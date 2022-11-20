@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Prueba\PruebaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +15,17 @@ use App\Http\Controllers\Prueba\PruebaController;
 */
 
 Route::get('/', function () {
-    return view('bienvenida');
+    return view('welcome');
 });
 
-Route::controller(PruebaController::class)->group(function () {
-    Route::get('/sobre-nosotros', 'sobreNosotros')->name('sobre-nosotros')->middleware('edad');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-    Route::get('/contacto', 'contacto')->name('contacto');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+require __DIR__.'/auth.php';
