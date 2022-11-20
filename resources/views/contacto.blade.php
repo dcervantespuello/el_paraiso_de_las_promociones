@@ -10,6 +10,7 @@
 
 <body>
     <h1>Página de contacto a través de un controlador</h1>
+    <a href="{{ route('sobre-nosotros') }}">Sobre nosotros</a>
 </body>
 
 </html>
