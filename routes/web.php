@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('bienvenida');
 });
 
-Route::get('/sobre-nosotros', [PruebaController::class, 'sobreNosotros']);
+Route::controller(PruebaController::class)->group(function () {
+    Route::get('/sobre-nosotros', 'sobreNosotros');
 
-Route::get('/contacto', [PruebaController::class, 'contacto']);
+    Route::get('/contacto', 'contacto');
+});
