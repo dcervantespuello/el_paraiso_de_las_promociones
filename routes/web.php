@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Prueba\PruebaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,6 @@ Route::get('/', function () {
     return view('bienvenida');
 });
 
-Route::get('/sobre-nosotros', function () {
-    return view('sobre-nosotros');
-});
+Route::get('/sobre-nosotros', [PruebaController::class, 'sobreNosotros']);
 
-Route::get('/contacto', function () {
-    return view('contacto');
-});
+Route::get('/contacto', [PruebaController::class, 'contacto']);
