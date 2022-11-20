@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::controller(PruebaController::class)->group(function () {
-    Route::get('/sobre-nosotros', 'sobreNosotros')->name('sobre-nosotros');
+    Route::get('/sobre-nosotros', 'sobreNosotros')->name('sobre-nosotros')->middleware('edad');
 
     Route::get('/contacto', 'contacto')->name('contacto');
 });
