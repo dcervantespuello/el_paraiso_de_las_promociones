@@ -1,6 +1,8 @@
 @extends('admin.admin_master')
 
 @section('admin')
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
@@ -48,8 +50,9 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img class="rounded avatar-lg"
-                                            src="{{ asset('backend/assets/images/small/img-5.jpg') }}" alt="Card image cap">
+                                        <img class="rounded avatar-lg" id="image"
+                                            src="{{ asset('backend/assets/images/small/img-5.jpg') }}"
+                                            alt="Imagen de perfil">
                                     </div>
                                 </div>
 
@@ -62,4 +65,20 @@
             </div>
         </div> <!-- container-fluid -->
     </div>
+    <script>
+        $(document).ready(function() {
+            // Cuando se sube el archivo en el campo #profile_image se crea una instancia de lector (FileReader).
+            $('#profile_image').change(function(e) {
+                var reader = new FileReader();
+
+                // Luego se ejecuta la función readAsDataURL para tener acceso al archivo como URL en el atributo result
+                reader.readAsDataURL(e.target.files[0]);
+
+                // Al finalizar la carga del archivo se remplaza el atributo src de la imagen por la URL obtenida del lector.
+                reader.onload = function(e) {
+                    $('#image').attr('src', e.target.result);
+                }
+            });
+        });
+    </script>
 @endsection
