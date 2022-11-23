@@ -12,7 +12,7 @@
 
                             <h4 class="card-title">Editar perfil</h4>
 
-                            <form action="" method="post">
+                            <form action="{{ route('store.profile') }}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -51,7 +51,7 @@
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
                                         <img class="rounded avatar-lg" id="image"
-                                            src="{{ asset('backend/assets/images/small/img-5.jpg') }}"
+                                            src="{{ asset($user->profile_image ? 'upload/profile_images/' . $user->profile_image : 'upload/no_image.jpg') }}"
                                             alt="Imagen de perfil">
                                     </div>
                                 </div>

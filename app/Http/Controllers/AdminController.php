@@ -22,6 +22,27 @@ class AdminController extends Controller
         return view('admin.admin_profile_edit', compact('user'));
     }
 
+    public function storeProfile(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->username = $request->username;
+
+        if ($request->file('profile_image')) {
+            $file = $request->file('profile_image');
+
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/profile_images'), $filename);
+            $user['profile_image'] = $filename;
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.profile');
+    }
+
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();

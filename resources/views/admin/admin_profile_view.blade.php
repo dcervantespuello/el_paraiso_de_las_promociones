@@ -7,8 +7,9 @@
                 <div class="col-lg-6">
                     <div class="card"><br><br>
                         <center>
-                            <img class="rounded-circle avatar-xl" src="{{ asset('backend/assets/images/small/img-5.jpg') }}"
-                                alt="Card image cap">
+                            <img class="rounded-circle avatar-xl"
+                                src="{{ asset($user->profile_image ? 'upload/profile_images/' . $user->profile_image : 'upload/no_image.jpg') }}"
+                                alt="Imagen de perfil" />
                         </center>
                         <div class="card-body">
                             <h4 class="card-title">Nombre completo: {{ $user->name }}</h4>
