@@ -41,7 +41,7 @@ class AdminController extends Controller
         $user->save();
 
         $notification = array(
-            'message' => 'Perfil actualizado con éxito',
+            'message' => 'Se actualizó su perfil con éxito',
             'alert-type' => 'success'
         );
 
@@ -56,6 +56,11 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        $notification = array(
+            'message' => 'Se cerró la sesión con éxito',
+            'alert-type' => 'success'
+        );
+
+        return redirect('/login')->with($notification);
     }
 }
