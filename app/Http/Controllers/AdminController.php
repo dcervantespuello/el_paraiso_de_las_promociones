@@ -40,7 +40,12 @@ class AdminController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.profile');
+        $notification = array(
+            'message' => 'Perfil actualizado con éxito',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.profile')->with($notification);
     }
 
     public function destroy(Request $request)
