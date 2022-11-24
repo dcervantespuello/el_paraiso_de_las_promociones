@@ -68,10 +68,10 @@ class AdminController extends Controller
             $user->password = bcrypt($request->newPassword);
             $user->save();
 
-            session()->flash('message', 'Contraseña actualizada con éxito');
+            session(['message' => 'Contraseña actualizada con éxito', 'alert-type' => 'success']);
             return redirect()->back();
         } else {
-            session()->flash('message', 'La contraseña anterior no coincide');
+            session(['message' => 'La contraseña anterior no coincide', 'alert-type' => 'error']);
             return redirect()->back();
         }
     }
