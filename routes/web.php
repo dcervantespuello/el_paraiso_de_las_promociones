@@ -36,6 +36,7 @@ Route::controller(AdminController::class)->group(function () {
 
 Route::controller(HomeSliderController::class)->group(function () {
     Route::get('/home/slide', 'homeSlider')->name('home.slide');
+    Route::post('/update/slide', 'updateSlide')->name('update.slide');
 });
 
 Route::middleware('auth')->group(function () {

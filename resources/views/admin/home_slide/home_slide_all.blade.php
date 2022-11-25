@@ -12,14 +12,16 @@
 
                             <h4 class="card-title">Editar información</h4><br><br>
 
-                            <form action="{{ route('store.profile') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update.slide') }}" method="post" enctype="multipart/form-data">
                                 @csrf
+
+                                <input type="hidden" name="id" value="{{ $homeSlide->id }}">
 
                                 <div class="row mb-3">
                                     <label for="title" class="col-sm-2 col-form-label">Título</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" id="title" type="text" name="title"
-                                            value="{{ $homeSlide->title }}" required autofocus />
+                                            value="{{ $homeSlide->title }}" />
                                     </div>
                                 </div>
 
@@ -27,7 +29,7 @@
                                     <label for="short_title" class="col-sm-2 col-form-label">Subtítulo</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" id="short_title" type="text" name="short_title"
-                                            value="{{ $homeSlide->short_title }}" required />
+                                            value="{{ $homeSlide->short_title }}" />
                                     </div>
                                 </div>
 
@@ -35,15 +37,14 @@
                                     <label for="video_url" class="col-sm-2 col-form-label">URL de video</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" id="video_url" type="url" name="video_url"
-                                            value="{{ $homeSlide->video_url }}" required />
+                                            value="{{ $homeSlide->video_url }}" />
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="home_slide" class="col-sm-2 col-form-label">Imagen</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="home_slide" type="file" name="home_slide"
-                                            required />
+                                        <input class="form-control" id="home_slide" type="file" name="home_slide" />
                                     </div>
                                 </div>
 
@@ -51,7 +52,7 @@
                                     <label class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
                                         <img class="rounded avatar-lg" id="image"
-                                            src="{{ asset($homeSlide->home_slide ? 'upload/home_slides/' . $homeSlide->home_slide : 'upload/no_image.jpg') }}"
+                                            src="{{ asset($homeSlide->home_slide ? $homeSlide->home_slide : 'upload/no_image.jpg') }}"
                                             alt="Imagen">
                                     </div>
                                 </div>
